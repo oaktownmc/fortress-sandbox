@@ -199,7 +199,8 @@ ConVar tf_damage_multiplier_blue( "tf_damage_multiplier_blue", "1.0", FCVAR_CHEA
 ConVar tf_damage_multiplier_red( "tf_damage_multiplier_red", "1.0", FCVAR_CHEAT, "All incoming damage to a red player is multiplied by this value" );
 
 
-ConVar tf_max_voice_speak_delay( "tf_max_voice_speak_delay", "1.5", FCVAR_DEVELOPMENTONLY, "Max time after a voice command until player can do another one", true, 0.1f, false, 0.f );
+ConVar tf_max_voice_speak_delay( "tf_max_voice_speak_delay", "1.5", FCVAR_NOTIFY, "Max time after a voice command until player can do another one", true, 0.f, false, 0.f );
+ConVar fsb_allow_voice_spam( "fsb_allow_voice_spam", "0", FCVAR_NOTIFY, "Allow voice command spamming with an interval of tf_max_voice_speak_delay." );
 
 ConVar tf_allow_player_use( "tf_allow_player_use", "0", FCVAR_NOTIFY, "Allow players to execute +use while playing." );
 
@@ -20051,20 +20052,23 @@ void CTFPlayer::NoteSpokeVoiceCommand( const char *pszScenePlayed )
 
 	float flTimeSinceAllowedVoice = gpGlobals->curtime - m_flNextVoiceCommandTime;
 
-	// if its longer than 5 seconds, reset the counter
-	if ( flTimeSinceAllowedVoice > 5.0f )
+	if ( !fsb_allow_voice_spam.GetBool() )
 	{
-		m_iVoiceSpamCounter = 0;
-	}
-	// if its less than a second past the allowed time, player is spamming
-	else if ( flTimeSinceAllowedVoice < 1.0f )
-	{
-		m_iVoiceSpamCounter++;
+		// if its longer than 5 seconds, reset the counter
+		if ( flTimeSinceAllowedVoice > 5.0f)
+		{
+			m_iVoiceSpamCounter = 0;
+		}
+		// if its less than a second past the allowed time, player is spamming
+		else if ( flTimeSinceAllowedVoice < 1.0f )
+		{
+			m_iVoiceSpamCounter++;
+		}
 	}
 
 	m_flNextVoiceCommandTime = gpGlobals->curtime + MIN( GetSceneDuration( pszScenePlayed ), tf_max_voice_speak_delay.GetFloat() );
 
-	if ( m_iVoiceSpamCounter > 0 )
+	if ( m_iVoiceSpamCounter > 0 && !fsb_allow_voice_spam.GetBool() )
 	{
 		m_flNextVoiceCommandTime += m_iVoiceSpamCounter * 0.5f;
 	}
