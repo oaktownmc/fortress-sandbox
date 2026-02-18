@@ -39,6 +39,12 @@ The default launch options should be already filled in for the `Release` configu
 Requirements:
  - Source SDK 2013 Multiplayer installed via Steam
  - podman
+ - ccache
+
+Create the ccache directory:
+```bash
+mkdir ~/.ccache
+```
 
 Inside the cloned directory, navigate to `src`, run:
 ```bash
