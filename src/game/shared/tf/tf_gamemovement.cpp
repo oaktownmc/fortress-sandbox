@@ -77,6 +77,9 @@ ConVar tf_movement_lost_footing_restick( "tf_movement_lost_footing_restick", "50
 ConVar tf_movement_lost_footing_friction( "tf_movement_lost_footing_friction", "0.1", FCVAR_REPLICATED | FCVAR_CHEAT,
                                           "Ground friction for players who have lost their footing" );
 
+ConVar fsb_autohop( "fsb_autohop", "0", FCVAR_GAMEDLL|FCVAR_REPLICATED|FCVAR_NOTIFY, "Allow player to continuously jump by holding down the jump button." ); // help string stolen from tf2c
+ConVar fsb_duckjump( "fsb_duckjump", "0", FCVAR_GAMEDLL|FCVAR_REPLICATED|FCVAR_NOTIFY, "Allow jumping while ducking." );
+
 extern ConVar cl_forwardspeed;
 extern ConVar cl_backspeed;
 extern ConVar cl_sidespeed;
@@ -1217,8 +1220,10 @@ bool CTFGameMovement::CheckJumpButton()
 
 	ToggleParachute();
 
-	// Cannot jump will ducked.
-	if ( player->GetFlags() & FL_DUCKING )
+	//             | w typos
+	//             v
+	// Cannot jump will ducked, unless fsb_duckjump is set.
+	if ( !fsb_duckjump.GetBool() && player->GetFlags() & FL_DUCKING )
 	{
 		// Let a scout do it.
 		bool bAllow = ( bScout && !bOnGround );
@@ -1231,8 +1236,8 @@ bool CTFGameMovement::CheckJumpButton()
 	if ( ( player->m_Local.m_bDucking && (  player->GetFlags() & FL_DUCKING ) ) || ( player->m_Local.m_flDuckJumpTime > 0.0f ) )
 		return false;
 
-	// Cannot jump again until the jump button has been released.
-	if ( mv->m_nOldButtons & IN_JUMP )
+	// Cannot jump again until the jump button has been released, unless fsb_autohop = 1.
+	if ( !fsb_autohop.GetBool() && mv->m_nOldButtons & IN_JUMP ) // HERE
 		return false;
 
 	// In air, so ignore jumps 
