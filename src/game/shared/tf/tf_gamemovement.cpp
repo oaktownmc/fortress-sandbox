@@ -1237,14 +1237,16 @@ bool CTFGameMovement::CheckJumpButton()
 		return false;
 
 	// Cannot jump again until the jump button has been released, unless fsb_autohop = 1.
-	if ( !fsb_autohop.GetBool() && mv->m_nOldButtons & IN_JUMP ) // HERE
+	if ( !fsb_autohop.GetBool() && mv->m_nOldButtons & IN_JUMP )
 		return false;
 
 	// In air, so ignore jumps 
 	// (unless you are a scout or ghost or parachute
 	if ( !bOnGround )
 	{
-		if ( m_pTFPlayer->CanAirDash() )
+		// Cannot double jump unless jump button is released.
+		// Without it, this breaks fsb_autohop 1.
+		if ( m_pTFPlayer->CanAirDash() && !( mv->m_nOldButtons & IN_JUMP ) )
 		{
 			bAirDash = true;
 		}
