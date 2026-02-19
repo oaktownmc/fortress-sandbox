@@ -4,6 +4,9 @@
         {
             "label": "Build All Projects",
             "type": "shell",
+            "options": {
+                "cwd": "src/"
+            },
             "command": "./buildallprojects",
             "group": {
                 "kind": "build",
