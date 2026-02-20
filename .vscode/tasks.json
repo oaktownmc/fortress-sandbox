@@ -24,7 +24,7 @@
         {
             "label": "Build & Run HL2MP",
             "type": "shell",
-            "command": "cd src && ./buildallprojects && cd \"${workspaceFolder}/game\" && ./mod_hl2mp_linux64",
+            "command": "cd src && ./buildallprojects && cd ../game && ./mod_hl2mp_linux64",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -41,7 +41,7 @@
         {
             "label": "Build & Run TF",
             "type": "shell",
-            "command": "cd src && ./buildallprojects && cd \"${workspaceFolder}/game\" && ./mod_tf_linux64",
+            "command": "cd src && ./buildallprojects && cd ../game && ./mod_tf_linux64",
             "group": {
                 "kind": "build",
                 "isDefault": true
