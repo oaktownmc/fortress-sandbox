@@ -1,6 +1,6 @@
 VERSION="1.0.41"
 PAK_VERSION="0.47.0"
-DEV_DIR=../game
+DEV_DIR=../game/fortress_sandbox
 CLEAN_DIR=../game_dist
 CLEAN_DEBUG_DIR=${CLEAN_DIR}_debug
 

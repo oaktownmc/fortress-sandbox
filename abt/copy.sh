@@ -13,7 +13,7 @@ rm -rf ${CLEAN_DEBUG_DIR}
 mkdir -p ${CLEAN_DIR}/{bin/$PLAT_DIR,fortress_sandbox/bin/$PLAT_DIR,fortress_sandbox/cfg,fortress_sandbox/custom}
 mkdir -p ${CLEAN_DEBUG_DIR}/{bin/$PLAT_DIR,fortress_sandbox/bin/$PLAT_DIR}
 
-./dlpak.sh
+#./dlpak.sh
 
 declare -a DLLS=(
   fortress_sandbox/bin/$PLAT_DIR/{client,server,game_shader_generic_std}
@@ -137,7 +137,7 @@ for F in $(cd ${DEV_DIR}/fortress_sandbox/cfg && git ls-files .); do
 done
 
 # pak1.vpk
-cp -rf ${DEV_DIR}/fortress_sandbox/pak1*.vpk  ${CLEAN_DIR}/fortress_sandbox
+#cp -rf ${DEV_DIR}/fortress_sandbox/pak1*.vpk  ${CLEAN_DIR}/fortress_sandbox
 
 for F in "${FILES[@]}"; do
   ORIG=$(basename ${F})
