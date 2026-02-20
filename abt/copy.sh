@@ -88,10 +88,8 @@ elif [ $PLATFORM = "linux" ]; then
   )
 
   FILES_REP+=(
-    start_dedicated_fortress_sandbox.sh
     update_dedicated.sh
     srcds_run_64
-    fortress_sandbox.sh
     hl2.sh
   )
 fi
@@ -143,8 +141,3 @@ for F in "${FILES[@]}"; do
   ORIG=$(basename ${F})
   cp -f ${F} ${CLEAN_DIR}/${ORIG}
 done
-
-# make executable
-if [ $PLATFORM = "linux" ]; then
-  chmod +x ${CLEAN_DIR}/*.sh ${CLEAN_DIR}/fortress_sandbox_linux64
-fi
