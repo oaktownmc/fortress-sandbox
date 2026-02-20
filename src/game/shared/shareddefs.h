@@ -19,6 +19,13 @@
 #define ROUND_TO_TICKS( t )		( TICK_INTERVAL * TIME_TO_TICKS( t ) )
 #define TICK_NEVER_THINK		(-1)
 
+// evil c++ macro fuckery
+
+// stringifies name
+#define QUOTE( name ) #name 
+// stringifies the value of a macro
+#define STR( macro ) QUOTE( macro )
+
 #if defined( TF_DLL )
 #define ANIMATION_CYCLE_BITS		10
 #else
@@ -271,7 +278,14 @@ inline bool IsIndexIntoPlayerArrayValid( int iIndex )
 
 #define MAX_PLACE_NAME_LENGTH		18
 
+// fov cvars
+#define MIN_FOV						20
 #define MAX_FOV						140
+#define DEFAULT_FOV					90
+
+#define MIN_VIEWMODEL_FOV			0.1
+#define MAX_VIEWMODEL_FOV			179.9
+#define DEFAULT_VIEWMODEL_FOV		70
 
 //===================================================================================================================
 // Team Defines
