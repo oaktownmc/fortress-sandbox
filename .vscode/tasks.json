@@ -22,26 +22,9 @@
             }
         },
         {
-            "label": "Build & Run HL2MP",
+            "label": "Build & Run FSB",
             "type": "shell",
-            "command": "cd src && ./buildallprojects && cd ../game && ./mod_hl2mp_linux64",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": {
-                "base": "$gcc",
-                "fileLocation": ["relative", "${workspaceFolder}"]
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            }
-        },
-        {
-            "label": "Build & Run TF",
-            "type": "shell",
-            "command": "cd src && ./buildallprojects && cd ../game && ./mod_tf_linux64",
+            "command": "cd src && ./buildallprojects && cd ../game && ./fortress_sandbox_linux64",
             "group": {
                 "kind": "build",
                 "isDefault": true
