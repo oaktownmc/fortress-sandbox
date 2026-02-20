@@ -1,16 +1,12 @@
-# Source SDK 2013
+# Fortress Sandbox
 
-Source code for Source SDK 2013.
-
-Contains the game code for Half-Life 2, HL2: DM and TF2.
-
-**Now including Team Fortress 2! ✨**
+Fortress Sandbox is a Team Fortress 2 modification that converts the team-based shooter into a multiplayer physics sandbox.
 
 ## Build instructions
 
 Clone the repository using the following command:
 
-`git clone https://github.com/ValveSoftware/source-sdk-2013`
+`git clone https://github.com/oaktownmc/fortress-sandbox`
 
 ### Windows
 
@@ -60,12 +56,6 @@ You can then, in the root of the cloned directory, you can navigate to `game` an
 
 *Mods that are distributed on Steam MUST be built against the Steam Runtime, which the above steps will automatically do for you.*
 
-## Distributing your Mod
-
-There is guidance on distributing your mod both on and off Steam available at the following link:
-
-https://partner.steamgames.com/doc/sdk/uploading/distributing_source_engine
-
 ## Additional Resources
 
 - [Valve Developer Wiki](https://developer.valvesoftware.com/wiki/Source_SDK_2013)
@@ -73,5 +63,3 @@ https://partner.steamgames.com/doc/sdk/uploading/distributing_source_engine
 ## License
 
 The SDK is licensed to users on a non-commercial basis under the [SOURCE 1 SDK LICENSE](LICENSE), which is contained in the [LICENSE](LICENSE) file in the root of the repository.
-
-For more information, see [Distributing your Mod](#markdown-header-distributing-your-mod).
