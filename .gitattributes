@@ -31,7 +31,6 @@ vpc binary
 *.vmt text
 *.inl text
 *.asm text
-*.zip binary
 
 .gitignore text
 README.md text
@@ -40,6 +39,7 @@ LICENSE text
 
 *.exe binary
 *.dll binary
+*.zip binary
 protoc binary
 ccache binary
 
