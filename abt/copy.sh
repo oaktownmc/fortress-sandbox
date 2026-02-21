@@ -75,7 +75,6 @@ if [ $PLATFORM = "win" ]; then
   )
 elif [ $PLATFORM = "linux" ]; then
   declare -a EXES=(
-    fortress_sandbox_linux64
     bin/$PLAT_DIR/crashpad_handler
   )
 
