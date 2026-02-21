@@ -75,7 +75,6 @@ if [ $PLATFORM = "win" ]; then
   )
 elif [ $PLATFORM = "linux" ]; then
   declare -a EXES=(
-    bin/$PLAT_DIR/crashpad_handler
   )
 
   DLLS+=(
