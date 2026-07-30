@@ -357,22 +357,26 @@ void CTFBotManager::PrecacheBotNames()
 	if ( fh )
 	{
 		int fileLen = filesystem->Size( fh );
-		char* buffer = new char[fileLen + 1];
+		char* line = new char[fileLen + 1];
 		
 		Msg( "successfully opened scripts/tf_botnames.txt\n" );
 		
 		while ( !filesystem->EndOfFile( fh ) )
 		{
-			filesystem->ReadLine( buffer, fileLen + 1, fh );
-			V_StrTrim( buffer );
-			if ( !V_isempty( buffer ) )
+			filesystem->ReadLine( line, fileLen + 1, fh );
+
+			// don't add empty lines
+			V_StrTrim( line );
+			if ( V_isempty( line ) )
 			{
-				m_botNames.CopyAndAddToTail( buffer );
-				Msg( "line: \"%s\"\n", buffer );
+				continue;
 			}
+			
+			m_botNames.CopyAndAddToTail( line );
+			//Msg( "line: \"%s\"\n", buffer );
 		}
 		
-		delete[] buffer;
+		delete[] line;
 		filesystem->Close( fh );
 	}
 	else
