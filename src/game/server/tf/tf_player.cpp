@@ -11823,9 +11823,9 @@ void CTFPlayer::Event_Killed( const CTakeDamageInfo &info )
 		}
 	}
 
-/*
-	// We're going to save this for a future date
-	if ( pPlayerAttacker )
+	// TF2 has commented out code for selecting a "birthday player"
+	// to re-enable it, you can use the ConVar fsb_birthday_player <0|1|2>.
+	if ( TFGameRules()->IsBirthdayPlayerLogicEnabled() && pPlayerAttacker )
 	{
 		if ( pPlayerAttacker != this )
 		{
@@ -11846,7 +11846,7 @@ void CTFPlayer::Event_Killed( const CTakeDamageInfo &info )
 			}
 		}
 	}
-*/
+
 	bool bOnGround = GetFlags() & FL_ONGROUND;
 	bool bElectrocuted = false;
 	bool bDisguised = m_Shared.InCond( TF_COND_DISGUISED );

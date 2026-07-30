@@ -1251,8 +1251,10 @@ public:
 	};
 	HalloweenScenarioType GetHalloweenScenario( void ) const;
 	bool IsHalloweenScenario( HalloweenScenarioType scenario ) const;
-
+	
 	bool CanInitiateDuels( void );
+
+	bool IsBirthdayPlayerLogicEnabled( void ) const;
 
 #ifdef GAME_DLL
 

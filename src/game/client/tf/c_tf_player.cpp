@@ -4567,7 +4567,7 @@ void C_TFPlayer::OnDataChanged( DataUpdateType_t updateType )
 			ShowIconForIT( bShouldShowIconForIT );
 		}
 
-		bool bShouldShowBirthdayEffect = false;//TFGameRules() && ( TFGameRules()->GetBirthdayPlayer() == this ) && !IsLocalPlayer();
+		bool bShouldShowBirthdayEffect = TFGameRules() && TFGameRules()->IsBirthdayPlayerLogicEnabled() && ( TFGameRules()->GetBirthdayPlayer() == this ) && !IsLocalPlayer();
 		if ( bShouldShowBirthdayEffect != m_bShouldShowBirthdayEffect )
 		{
 			ShowBirthdayEffect( bShouldShowBirthdayEffect );
@@ -5492,7 +5492,7 @@ void C_TFPlayer::ShowIconForIT( bool bShow )
 //-----------------------------------------------------------------------------
 void C_TFPlayer::ShowBirthdayEffect( bool bShow )
 {
-/*
+	// TODO: should fsb_birthday_player ConVar affect this?
 	if ( bShow )
 	{
 		ParticleProp()->Create( "birthday_player_circling", PATTACH_POINT_FOLLOW, "head" );
@@ -5502,7 +5502,7 @@ void C_TFPlayer::ShowBirthdayEffect( bool bShow )
 	{
 		ParticleProp()->StopParticlesNamed( "birthday_player_circling", true );
 	}
-*/
+
 	m_bShouldShowBirthdayEffect = bShow;
 }
 

@@ -775,6 +775,7 @@ ConVar tf_force_holidays_off( "tf_force_holidays_off", "0", FCVAR_NOTIFY | FCVAR
 #endif // GAME_DLL
 );
 ConVar tf_birthday( "tf_birthday", "0", FCVAR_NOTIFY | FCVAR_REPLICATED );
+ConVar fsb_birthday_player( "fsb_birthday_player", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "Whether to enable TF2's unused 'birthday player' logic.\n   Disable = 0\n   Only when birthday mode is enabled = 1\n   Always = 2" );
 ConVar tf_spells_enabled( "tf_spells_enabled", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "Enable to Allow Halloween Spells to be dropped and used by players" );
 
 ConVar tf_caplinear( "tf_caplinear", "1", FCVAR_REPLICATED | FCVAR_DEVELOPMENTONLY, "If set to 1, teams must capture control points linearly." );
@@ -3736,6 +3737,26 @@ bool CTFGameRules::CanInitiateDuels( void )
 }
 
 //-----------------------------------------------------------------------------
+// Purpose: Check if TF2's unused birthday player logic should run
+//-----------------------------------------------------------------------------
+bool CTFGameRules::IsBirthdayPlayerLogicEnabled() const
+{
+	int convarValue = fsb_birthday_player.GetInt();
+	switch (convarValue)
+	{
+	case 0:
+		return false;
+	case 1:
+		return IsBirthday();
+	case 2:
+		return true;
+	default:
+		Msg( "Unexpected value of fsb_birthday_player ConVar! (got %d)\n", convarValue );
+		return false;
+	}
+}
+
+//-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
 int CTFGameRules::GetGameTeamForGCTeam( TF_GC_TEAM nGCTeam )
@@ -3984,8 +4005,7 @@ void CTFGameRules::SetIT( CBaseEntity *who )
 //-----------------------------------------------------------------------------
 void CTFGameRules::SetBirthdayPlayer( CBaseEntity *pEntity )
 {
-/*
-	if ( IsBirthday() )
+	if ( IsBirthdayPlayerLogicEnabled() )
 	{
 		if ( pEntity && pEntity->IsPlayer() && pEntity != m_hBirthdayPlayer.Get() )
 		{
@@ -4002,6 +4022,7 @@ void CTFGameRules::SetBirthdayPlayer( CBaseEntity *pEntity )
 				// force them to scream when they become it
 //				pTFPlayer->EmitSound( "Halloween.PlayerScream" );
 			}
+			Msg( "set the birthday player to %s\n", pTFPlayer->GetPlayerName() );
 		}
 
 // 		CTFPlayer *oldIT = ToTFPlayer( m_itHandle );
@@ -4022,7 +4043,6 @@ void CTFGameRules::SetBirthdayPlayer( CBaseEntity *pEntity )
 	{
 		m_hBirthdayPlayer = NULL;
 	}
-*/
 }
 
 
