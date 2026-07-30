@@ -78,15 +78,16 @@ void CThirdPersonManager::Update( void )
 		sv_cheats = cvar->FindVar( "sv_cheats" );
 	}
 
+	//keeping this in the event we might put the cheats restriction into a cvar
 	// If cheats have been disabled, pull us back out of third-person view.
-	if ( sv_cheats && !sv_cheats->GetBool() && GameRules() && GameRules()->AllowThirdPersonCamera() == false )
-	{
-		if ( (bool)input->CAM_IsThirdPerson() == true )
-		{
-			input->CAM_ToFirstPerson();
-		}
-		return;
-	}
+	//if ( sv_cheats && !sv_cheats->GetBool() && GameRules() && GameRules()->AllowThirdPersonCamera() == false )
+	//{
+	//	if ( (bool)input->CAM_IsThirdPerson() == true )
+	//	{
+	//		input->CAM_ToFirstPerson();
+	//	}
+	//	return;
+	//}
 
 	if ( IsOverridingThirdPerson() == false )
 	{
