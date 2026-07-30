@@ -25,13 +25,12 @@ jobs:
         working-directory: src
         run: .\createallprojects.bat
 
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v3
+      
       - name: Build
         shell: pwsh
-        run: |
-          & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe" `
-            src\everything.sln `
-            /m `
-            /v:minimal
+        run: msbuild src\everything.sln /m /v:minimal
 
       - name: Collect artifact
         shell: pwsh
