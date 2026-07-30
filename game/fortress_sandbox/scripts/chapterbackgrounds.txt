@@ -1,0 +1,22 @@
+"chapters"
+{
+	1	"background1"
+	2	"background2"
+	3	"background3"
+	4	"background4"
+	5   "background5"
+    6   "background6"
+    7   "background7"
+    8   "background8"
+}
+"BackgroundMaps"
+{
+	1	"background1"
+	2	"background2"
+	3	"background3"
+	4	"background4"
+    5   "background5"
+    6   "background6"
+    7   "background7"
+    8   "background8"	
+}
