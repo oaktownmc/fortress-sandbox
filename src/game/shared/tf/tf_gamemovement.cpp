@@ -77,9 +77,9 @@ ConVar tf_movement_lost_footing_restick( "tf_movement_lost_footing_restick", "50
 ConVar tf_movement_lost_footing_friction( "tf_movement_lost_footing_friction", "0.1", FCVAR_REPLICATED | FCVAR_CHEAT,
                                           "Ground friction for players who have lost their footing" );
 
-ConVar fsb_autohop( "fsb_autohop", "0", FCVAR_GAMEDLL|FCVAR_REPLICATED|FCVAR_NOTIFY, "Allow player to continuously jump by holding down the jump button." ); // help string stolen from tf2c
-ConVar fsb_duckjump( "fsb_duckjump", "0", FCVAR_GAMEDLL|FCVAR_REPLICATED|FCVAR_NOTIFY, "Allow jumping while ducking." );
-ConVar fsb_prevent_bunny_jumping( "fsb_prevent_bunny_jumping", "0", FCVAR_GAMEDLL|FCVAR_REPLICATED|FCVAR_NOTIFY, "Enable TF2's PreventBunnyJumping() function." );
+ConVar fsb_autohop( "fsb_autohop", "0", FCVAR_NOTIFY |  FCVAR_REPLICATED, "Allow player to continuously jump by holding down the jump button." ); // help string stolen from tf2c
+ConVar fsb_duckjump( "fsb_duckjump", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "Allow jumping while ducking." );
+ConVar fsb_prevent_bunny_jumping( "fsb_prevent_bunny_jumping", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "Enable TF2's PreventBunnyJumping() function." );
 
 extern ConVar cl_forwardspeed;
 extern ConVar cl_backspeed;
