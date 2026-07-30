@@ -3742,7 +3742,7 @@ bool CTFGameRules::CanInitiateDuels( void )
 bool CTFGameRules::IsBirthdayPlayerLogicEnabled() const
 {
 	int convarValue = fsb_birthday_player.GetInt();
-	switch (convarValue)
+	switch ( convarValue )
 	{
 	case 0:
 		return false;
