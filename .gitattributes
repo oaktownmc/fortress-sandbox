@@ -43,4 +43,4 @@ LICENSE text
 protoc binary
 ccache binary
 
-*_english.txt binary
+*_english.txt text working-tree-encoding=UTF-16LE
