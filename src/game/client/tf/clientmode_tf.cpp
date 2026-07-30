@@ -1644,12 +1644,12 @@ void ClientModeTFNormal::OnScreenshotRequested( ScreenshotRequested_t *pParam )
 
 //-----------------------------------------------------------------------------------------
 ConVar cl_ask_favorite_min_session_duration( "cl_ask_favorite_min_session_duration", "600", 0, "If player stays on a server for longer than this time (in seconds) prompt to add server to favorites" );
-ConVar cl_ask_favorite_opt_out( "cl_ask_favorite_opt_out", "0", FCVAR_ARCHIVE, "If nonzero, don't auto-ask to favorite servers" );
+ConVar cl_ask_favorite_opt_out( "cl_ask_favorite_opt_out", "1", FCVAR_ARCHIVE, "If nonzero, don't auto-ask to favorite servers" );
 ConVar cl_ask_favorite_for_any_server( "cl_ask_favorite_for_any_server", "0", 0, "If nonzero, auto-ask for local/LAN servers (for debugging)" );
 
 
 ConVar cl_ask_blacklist_max_session_duration( "cl_ask_blacklist_max_session_duration", "60", 0, "If player stays on a server for less than this time (in seconds) prompt to add server to blacklist" );
-ConVar cl_ask_blacklist_opt_out( "cl_ask_blacklist_opt_out", "0", FCVAR_ARCHIVE, "If nonzero, don't auto-ask to blacklist servers" );
+ConVar cl_ask_blacklist_opt_out( "cl_ask_blacklist_opt_out", "1", FCVAR_ARCHIVE, "If nonzero, don't auto-ask to blacklist servers" );
 ConVar cl_ask_blacklist_for_any_server( "cl_ask_blacklist_for_any_server", "0", 0, "If nonzero, auto-ask for local/LAN servers (for debugging)" );
 
 
