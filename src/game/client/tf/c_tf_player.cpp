@@ -3170,6 +3170,49 @@ bool CStatTrakDigitProxy::HelperOnBindGetStatTrakScore( void *pC_BaseEntity, int
 				}
 			}
 		}
+		else
+		{
+			CTFWeaponBase* pWeap = NULL;
+
+			// Check if it's an attachment for world model
+			C_TFWeaponAttachmentModel* pAttachment = dynamic_cast<C_TFWeaponAttachmentModel*>( pEntity );
+			if ( pAttachment )
+			{
+				// If we're dealing with a world model, Stat Clock will be it's child attachment
+				C_BaseEntity* pParent = pAttachment->GetMoveParent();
+				if ( pParent )
+				{
+					pWeap = dynamic_cast<CTFWeaponBase*>( pParent );
+				}
+			}
+
+			if ( pWeap )
+			{
+				CEconItemView* pItem = pWeap->GetAttributeContainer()->GetItem();
+				if ( pItem && pItem->FindAttribute( GetKillEaterAttr_Score( 0 ), &unScore ) )
+				{
+					*piScore = unScore;
+					bReturnValue = true;
+				}
+			}
+			else
+			{
+				// Are we dealing with a dropped weapon?
+				C_BaseEntity* pParent = pEntity->GetMoveParent();
+				CTFDroppedWeapon* pDroppedWeapon = dynamic_cast<CTFDroppedWeapon*>( pParent );
+
+				if ( pDroppedWeapon )
+				{
+					// We're able to extract item attributes from dropped weapons, including strange count
+					CEconItemView* pItem = pDroppedWeapon->GetItem();
+					if ( pItem && pItem->FindAttribute( GetKillEaterAttr_Score( 0 ), &unScore ) )
+					{
+						*piScore = unScore;
+						bReturnValue = true;
+					}
+				}
+			}
+		}
 	}
 	else
 	{
@@ -3790,6 +3833,7 @@ IMPLEMENT_CLIENTCLASS_DT( C_TFPlayer, DT_TFPlayer, CTFPlayer )
 	RecvPropInt( RECVINFO( m_iPlayerSkinOverride ) ),
 	RecvPropBool( RECVINFO( m_bViewingCYOAPDA ) ),
 	RecvPropBool( RECVINFO( m_bRegenerating ) ),
+	RecvPropEHandle( RECVINFO( m_hOffHandWeapon ) ),
 END_RECV_TABLE()
 
 
@@ -5886,6 +5930,17 @@ bool C_TFPlayer::IsPlayerOnSteamFriendsList( C_BasePlayer *pPlayer )
 	return false;
 }
 
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void C_TFPlayer::PreThink( void )
+{
+	// Update timers.
+	UpdateTimers();
+
+	// Pass through to the base class think.
+	BaseClass::PreThink();
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -6089,6 +6144,11 @@ void C_TFPlayer::ClientThink()
 		    engine->ClientCmd("voicemenu 1 8");
 	    }
 	}
+}
+
+void C_TFPlayer::UpdateTimers( void )
+{
+	m_Shared.SharedThink();
 }
 
 void C_TFPlayer::Touch( CBaseEntity *pOther )
@@ -7035,6 +7095,15 @@ void C_TFPlayer::UpdateIDTarget()
 
 	if ( tr.m_pEnt && tr.m_pEnt->IsPlayer() )
 	{
+		trace_t trShot;
+		// use the shot mask to replicate the medigun's trace
+		UTIL_TraceLine( vecStart, vecEnd, MASK_SHOT, this, COLLISION_GROUP_NONE, &trShot );
+
+		if ( trShot.fraction != 1.0 && trShot.m_pEnt && trShot.m_pEnt->IsPlayer() && ( !tr.startsolid || tr.m_pEnt != trShot.m_pEnt ) )
+		{
+			tr = trShot;
+		}
+
 		// It's okay to start solid against enemies because we sometimes press right against them
 		bIsEnemyPlayer = GetTeamNumber() != tr.m_pEnt->GetTeamNumber();
 	}
