@@ -293,6 +293,9 @@ extern ConVar tf_tournament_classchange_allowed;
 extern ConVar tf_tournament_classchange_ready_allowed;
 extern ConVar tf_rocketpack_impact_push_min;
 extern ConVar tf_rocketpack_impact_push_max;
+
+extern ConVar fsb_instant_respawn;
+
 #if defined( _DEBUG ) || defined( STAGING_ONLY )
 extern ConVar mp_developer;
 extern ConVar bot_mimic;
@@ -13004,6 +13007,14 @@ void CTFPlayer::Event_Killed( const CTakeDamageInfo &info )
 
 	// make sure to remove custom attributes
 	RemoveAllCustomAttributes();
+
+	// respawn if instant respawns are on
+	// TODO: for some reason there is no function to check if we can respawn............... so it won't check if we are in arena mode or stalemate or game won or some other state where a player should not be able to respawn......
+	// TODO: also player ragdoll will show where they respawn instead of where they die
+	if ( fsb_instant_respawn.GetBool() )
+	{
+		ForceRespawn();
+	}
 }
 
 struct SkillRatingAttackRecord_t
