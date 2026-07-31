@@ -20,26 +20,6 @@
                 "reveal": "always",
                 "panel": "shared"
             }
-        },
-        {
-            "label": "Build & Run FSB",
-            "type": "shell",
-            "options": {
-                "cwd": "src/"
-            },
-            "command": "./buildallprojects && cd ../game && ./fortress_sandbox_linux64",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": {
-                "base": "$gcc",
-                "fileLocation": ["relative", "${workspaceFolder}"]
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            }
         }
     ]
 }
