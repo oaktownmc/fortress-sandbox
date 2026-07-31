@@ -482,6 +482,7 @@ public:
 
 	CMaterialReference *GetInvulnMaterialRef( void ) { return &m_InvulnerableMaterial; }
 	bool IsNemesisOfLocalPlayer();
+	bool ShouldShowBirthdayEffect();
 	bool ShouldShowDuelingIcon();
 	bool ShouldShowNemesisIcon();
 

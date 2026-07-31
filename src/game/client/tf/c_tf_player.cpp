@@ -223,6 +223,7 @@ ConVar tf_taunt_first_person( "tf_taunt_first_person", "0", FCVAR_NONE, "1 = tau
 ConVar tf_romevision_opt_in( "tf_romevision_opt_in", "0", FCVAR_ARCHIVE, "Enable Romevision in Mann vs. Machine mode when available." );
 ConVar tf_romevision_skip_prompt( "tf_romevision_skip_prompt", "0", FCVAR_ARCHIVE, "If nonzero, skip the prompt about sharing Romevision." );
 
+ConVar fsb_birthday_player_effect_on_self( "fsb_birthday_player_effect_on_self", "1", FCVAR_ARCHIVE, "When enabled, the birthday player effect will show when local player is in third person. Disable to use Valve's original code." );
 
 #define BDAY_HAT_MODEL		"models/effects/bday_hat.mdl"
 #define BOMB_HAT_MODEL		"models/props_lakeside_event/bomb_temp_hat.mdl"
@@ -4567,7 +4568,7 @@ void C_TFPlayer::OnDataChanged( DataUpdateType_t updateType )
 			ShowIconForIT( bShouldShowIconForIT );
 		}
 
-		bool bShouldShowBirthdayEffect = TFGameRules() && TFGameRules()->IsBirthdayPlayerLogicEnabled() && ( TFGameRules()->GetBirthdayPlayer() == this ) && !IsLocalPlayer();
+		bool bShouldShowBirthdayEffect = ShouldShowBirthdayEffect();
 		if ( bShouldShowBirthdayEffect != m_bShouldShowBirthdayEffect )
 		{
 			ShowBirthdayEffect( bShouldShowBirthdayEffect );
@@ -9340,6 +9341,29 @@ bool C_TFPlayer::IsNemesisOfLocalPlayer()
 		return m_Shared.IsPlayerDominated( pLocalPlayer->entindex() );
 	}		
 	return false;
+}
+
+bool C_TFPlayer::ShouldShowBirthdayEffect()
+{
+	if ( !TFGameRules() )
+		return false; // what?
+
+	// check if the cvar is enabled
+	if ( !TFGameRules()->IsBirthdayPlayerLogicEnabled() )
+		return false;
+		
+	// this player has to be the birthday player
+	if ( TFGameRules()->GetBirthdayPlayer() != this )
+		return false;
+	
+	if ( IsLocalPlayer() )
+	{
+		if ( fsb_birthday_player_effect_on_self.GetBool() && !InFirstPersonView() )
+			return true;
+
+		return false;
+	}
+	return true;
 }
 
 extern ConVar tf_tournament_hide_domination_icons;
