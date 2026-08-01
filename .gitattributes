@@ -43,4 +43,5 @@ LICENSE text
 protoc binary
 ccache binary
 
-*_english.txt text working-tree-encoding=UTF-16LE-BOM eol=crlf
+# i hate this file
+*_english.txt binary working-tree-encoding=UTF-16LE-BOM eol=crlf
