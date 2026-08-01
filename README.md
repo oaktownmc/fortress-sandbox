@@ -1,6 +1,6 @@
-# Fortress Sandbox
+# Fortress Sandbox (In Development)
 
-Fortress Sandbox is a Team Fortress 2 modification that converts the team-based shooter into a multiplayer physics sandbox.
+Fortress Sandbox is a Team Fortress 2 modification that converts the team-based shooter into a multiplayer physics sandbox. This mod draws inspiration from Garry's Mod while preserving the core aesthetic of Team Fortress 2, on which this mod was built.
 
 ## Build instructions
 
