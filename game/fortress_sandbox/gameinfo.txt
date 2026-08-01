@@ -11,8 +11,8 @@
 		"test_hardware"		1
 	}
 	nodegraph 				0
-	GameData				"tf.fgd"
-	AdditionalLocalization	"tf"
+	GameData				"fsb.fgd" 
+	AdditionalLocalization	"fsb"
 	InstancePath			"maps/instances/"
 	advcrosshair 			1
 	supportsvr				0
