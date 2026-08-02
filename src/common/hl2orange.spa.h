@@ -166,6 +166,7 @@ extern "C" {
 #define PROPERTY_NUMBER_OF_TEAMS                    0x10000025
 #define PROPERTY_TEAM_RED                           0x10000026
 #define PROPERTY_TEAM_BLUE                          0x10000027
+//#define PROPERTY_TEAM_SB                          0x1000002?  [I'm not fully sure how this thing would work but I added it anyway]
 #define PROPERTY_TEAM_SPECTATOR                     0x10000028
 #define PROPERTY_TEAM                               0x10000029
 #define PROPERTY_WIN_LIMIT                          0x1000002A

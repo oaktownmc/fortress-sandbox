@@ -260,6 +260,7 @@ CTFTeamMenu::CTFTeamMenu( IViewPort *pViewPort ) : CTeamMenu( pViewPort )
 
 	m_pBlueTeamButton = new CTFTeamButton( this, "teambutton0" );
 	m_pRedTeamButton = new CTFTeamButton( this, "teambutton1" );
+//	m_pSBTeamButton = new CTFTeamButton(this, "teambutton4"); [Perhaps this could be used as a team button for sandbox team, idk yet]
 	m_pAutoTeamButton = new CTFTeamButton( this, "teambutton2" );
 	m_pSpecTeamButton = new CTFTeamButton( this, "teambutton3" );
 	m_pSpecLabel = new CExLabel( this, "TeamMenuSpectate", "" );
@@ -419,6 +420,15 @@ void CTFTeamMenu::ShowPanel( bool bShow )
 			}
 			GetFocusNavGroup().SetCurrentFocus( m_pRedTeamButton->GetVPanel(), m_pRedTeamButton->GetVPanel() );
 			break;
+
+//		case TF_TEAM_SB: [This may have something to do with the team buttons, but Idk so it is here anyways]
+//			if (::input->EnableJoystickMode())
+//			{
+//				m_pSBTeamButton->OnCursorEntered();
+//				m_pSBTeamButton->SetDefaultAnimation("enter_enabled");
+//			}
+//			GetFocusNavGroup().SetCurrentFocus(m_pSBTeamButton->GetVPanel(), m_pSBTeamButton->GetVPanel());
+//			break;
 
 		default:
 			if ( ::input->EnableJoystickMode() )
@@ -636,6 +646,10 @@ void CTFTeamMenu::OnCommand( const char *command )
 			{
 				iTeam = TF_TEAM_BLUE;
 			}
+//			else if (Q_stricmp(pTeam, "sandbox") == 0)
+//			{
+//				iTeam = TF_TEAM_SB|;
+//			}
 
 			if ( iTeam == TF_TEAM_RED && m_bRedDisabled )
 			{
@@ -646,6 +660,11 @@ void CTFTeamMenu::OnCommand( const char *command )
 			{
 				return;
 			}
+
+//			if (iTeam == TF_TEAM_SB && m_bSBDisabled)
+//			{
+//				return;
+//			}
 
 			// are we selecting the team we're already on?
 			if ( pLocalPlayer->GetTeamNumber() != iTeam )
@@ -766,6 +785,7 @@ void CTFTeamMenu::OnTick()
 
 	C_Team *pRed = GetGlobalTeam( TF_TEAM_RED );
 	C_Team *pBlue = GetGlobalTeam( TF_TEAM_BLUE );
+//	C_Team* pSB = GetGlobalTeam(TF_TEAM_SB);
 
 	if ( !pRed || !pBlue )
 		return;
@@ -773,6 +793,7 @@ void CTFTeamMenu::OnTick()
 	// set our team counts
 	SetDialogVariable( "bluecount", pBlue->Get_Number_Players() );
 	SetDialogVariable( "redcount", pRed->Get_Number_Players() );
+//	SetDialogVariable("sandboxcount", pSB->Get_Number_Players());
 
 	C_TFPlayer *pLocalPlayer = C_TFPlayer::GetLocalTFPlayer();
 
@@ -801,6 +822,7 @@ void CTFTeamMenu::OnTick()
 			m_pHighlanderLabelShadow->SetVisible( bHighlander );
 		}
 	}
+
 
 	// check if teams are unbalanced
 	m_bRedDisabled = m_bBlueDisabled = false;
