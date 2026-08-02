@@ -168,6 +168,12 @@ DESCRIPTION SERVER_OPTIONS
 		{ BOOL }
 		{"0"}
 	}
+	"fsb_instant_respawn"
+	{
+		"Instant Respawning"
+		{ BOOL }
+		{ "0" }
+	}
 	"sv_downloadurl"
 	{
 		"FASTDL Url"
