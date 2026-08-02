@@ -433,6 +433,9 @@ static MapInfo_t s_CommunityMaps[] = {
 	{ "arena_afterlife", "Afterlife", "#Gametype_Arena" },
 	{ "ctf_doublecross_event", "Devilcross", "#Gametype_CTF" },
 	{ "sd_marshlands", "Marshlands", "#GameType_HTF" },
+
+	//define maps here -Headless
+	{ "fsb_construct", "Construct", "#GameType_Sandbox" },
 };
 
 /*
