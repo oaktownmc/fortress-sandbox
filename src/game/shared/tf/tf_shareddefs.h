@@ -32,7 +32,6 @@ enum
 {
 	TF_TEAM_RED = LAST_SHARED_TEAM+1,
 	TF_TEAM_BLUE,
-//	TF_TEAM_SB,  [Commented out so we can use it later]
 	TF_TEAM_COUNT
 };
 
@@ -58,11 +57,9 @@ extern color32 g_aTeamColors[TF_TEAM_COUNT];
 #define COLOR_TF_SPECTATOR	Color( 245, 229, 196, 255 )
 #define COLOR_TF_RED		Color( 175, 73, 73, 255 )
 #define COLOR_TF_BLUE		Color( 79, 117, 143, 255 )
-//#define COLOR_TF_SB		Color( 255, 255, 255, 255 )
 
 #define CONTENTS_REDTEAM	CONTENTS_TEAM1
 #define CONTENTS_BLUETEAM	CONTENTS_TEAM2
-//#define CONTENTS_SBTEAM	CONTENTS_TEAM3
 
 enum 
 {
@@ -97,11 +94,6 @@ inline int GetEnemyTeam( int team )
 
 	if ( team == TF_TEAM_BLUE )
 		return TF_TEAM_RED;
-
-//	if (team == TF_TEAM_SB)  // With this new line of code we can determine what other team is the enemy of this team, if the team is an enemy of itself then all members of this team become enemies with their team members (Essentially how deathmatch team from open fortress works)
-// 
-//		return TF_TEAM_SB;
-
 
 	// no enemy team
 	return team;
@@ -169,8 +161,6 @@ enum
 //-----------------------------------------------------------------------------
 #define PANEL_CLASS_BLUE		"class_blue"
 #define PANEL_CLASS_RED			"class_red"
-//#define PANEL_CLASS_SB			"class_sandbox"
-
 #define PANEL_MAPINFO			"mapinfo"
 #define PANEL_ROUNDINFO			"roundinfo"
 
@@ -233,7 +223,6 @@ enum ETFClass
 
 inline bool IsValidTFPlayerClass( int iClass ) { return iClass >= TF_FIRST_NORMAL_CLASS && iClass < TF_LAST_NORMAL_CLASS; }
 inline bool IsValidTFTeam( int iTeam ) { return iTeam == TF_TEAM_RED || iTeam == TF_TEAM_BLUE; }
-//inline bool IsValidTFTeam(int iTeam) { return iTeam == TF_TEAM_RED || iTeam == TF_TEAM_BLUE || iTeam == TF_TEAM_SB; } [This might work when it is eventually uncommented but I'm not sure]
 
 #define FOR_EACH_NORMAL_PLAYER_CLASS( _i ) for ( int _i = TF_FIRST_NORMAL_CLASS; _i < TF_LAST_NORMAL_CLASS; _i++ )
 
@@ -296,7 +285,6 @@ enum ETFGameType
 	TF_GAMETYPE_RD,
 	TF_GAMETYPE_PASSTIME,
 	TF_GAMETYPE_PD,
-//	TF_GAMETYPE_SB [ This could be used to determine sandbox as an actual gamemode at some point]
 
 	//
 	// ADD NEW ITEMS HERE TO AVOID BREAKING DEMOS
@@ -321,8 +309,6 @@ enum
 	TF_HUDTYPE_ESCORT,
 	TF_HUDTYPE_ARENA,
 	TF_HUDTYPE_TRAINING,
-//	TF_HUDTYPE_SB
-	
 
 	//
 	// ADD NEW ITEMS HERE TO AVOID BREAKING DEMOS

@@ -142,12 +142,6 @@ using namespace GCSDK;
 static_assert( TEAM_UNASSIGNED == 0, "If this assert fires, update the assert and the enum in ctexturecompositor.cpp which specifies team colors" );
 static_assert( TF_TEAM_RED == 2, "If this assert fires, update the assert and the enum in ctexturecompositor.cpp which specifies team colors" );
 static_assert( TF_TEAM_BLUE == 3, "If this assert fires, update the assert and the enum in ctexturecompositor.cpp which specifies team colors" );
-// static_assert( TF_TEAM_SB == 4, "If this assert fires, update the assert and the enum in ctexturecompositor.cpp which specifies team colors" );
-// 
-//
-// 
-// (This one is commented out so we can use it in a later update) 
-
 
 // Forward decl
 CEconItemView *GetEconItemViewFromProxyEntity( void *pEntity );
@@ -720,12 +714,6 @@ void C_TFRagdoll::CreateTFRagdoll()
 		{
 			m_nSkin = 0;
 		}
-
-//		if (m_iTeam == TF_TEAM_SB) [This could be skin 4 but I'm not sure]
-//		{
-//			m_nSkin = 4;
-//		}
-
 		else
 		{
 			m_nSkin = 1;
@@ -1621,12 +1609,6 @@ void C_TFRagdoll::DissolveEntity( CBaseEntity* pEnt )
 			pDissolve->SetEffectColor( vColor );
 		}
 
-//		if (m_iTeam == TF_TEAM_SB)
-//		{
-//			vColor = TF_PARTICLE_WEAPON_SB_1 * 255;
-//			pDissolve->SetEffectColor(vColor);
-//		}
-
 		pDissolve->m_vDissolverOrigin = GetAbsOrigin();
 
 		pDissolve->m_flFadeInStart = DISSOLVE_FADE_IN_START_TIME;
@@ -1758,10 +1740,6 @@ void CSpyInvisProxy::OnBind( C_BaseEntity *pBaseEntity )
 		case TF_TEAM_RED:
 			r = 1.0; g = 0.5; b = 0.4;
 			break;
-
-//		case TF_TEAM_SB: [Cloak invisibility color for SB team]
-//			r = 1.0; g = 1.0; b = 1.0;
-//			break;
 
 		case TF_TEAM_BLUE:
 		default:
@@ -4689,10 +4667,6 @@ void C_TFPlayer::OnDataChanged( DataUpdateType_t updateType )
 						pTeam = "blue";
 						break;
 
-				//	case TF_TEAM_SB:
-				//		pTeam = "sandbox";
-				//		break;
-
 					case TEAM_SPECTATOR:
 						pTeam = "spectate";
 						break;
@@ -5066,10 +5040,6 @@ void C_TFPlayer::InitInvulnerableMaterial( void )
 	case TF_TEAM_RED:	
 		pszMaterial = "models/effects/invulnfx_red.vmt";
 		break;
-//	case TF_TEAM_SB: [This is simply the uber material for sandbox team when a player gets ubered]
-//		pszMaterial = "models/effects/invulnfx_sandbox.vmt";
-//		break;
-
 	default:
 		break;
 	}
@@ -5163,9 +5133,6 @@ void C_TFPlayer::UpdateRecentlyTeleportedEffect( void )
 			case TF_TEAM_RED:
 				pszEffectName = "player_recent_teleport_red";
 				break;
-//			case TF_TEAM_SB:
-//				pszEffectName = "player_recent_teleport_sandbox";
-//				break;
 			default:
 				break;
 			}
@@ -5438,9 +5405,6 @@ bool C_TFPlayer::IsEnemyPlayer( void )
 	case TF_TEAM_BLUE:
 		return ( GetTeamNumber() == TF_TEAM_RED );
 
-//	case TF_TEAM_SB: [There may be a way to add additional teams to the enemy list but I'm not sure]
-//		return (GetTeamNumber() == TF_TEAM_SB);
-
 	default:
 		break;
 	}
@@ -5464,9 +5428,6 @@ void C_TFPlayer::ShowNemesisIcon( bool bShow )
 		case TF_TEAM_BLUE:
 			pszEffect = "particle_nemesis_blue";
 			break;
-//		case TF_TEAM_SB:
-//			pszEffect = "particle_nemesis_sandbox";
-//			break;
 		default:
 			return;	// shouldn't get called if we're not on a team; bail out if it does
 		}
@@ -5477,7 +5438,6 @@ void C_TFPlayer::ShowNemesisIcon( bool bShow )
 		// stop effects for both team colors (to make sure we remove effects in event of team change)
 		RemoveOverheadEffect( "particle_nemesis_red", true );
 		RemoveOverheadEffect( "particle_nemesis_blue", true );
-	//	RemoveOverheadEffect("particle_nemesis_sandbox", true);
 	}
 	m_bIsDisplayingNemesisIcon = bShow;
 }
@@ -7344,13 +7304,6 @@ void C_TFPlayer::GetTeamColor( Color &color )
 		color[1] = 55;
 		color[2] = 34;
 	}
-
-//	if (GetTeamNumber() == TF_TEAM_SB)
-//	{
-//		color[0] = 255;
-//		color[1] = 255;
-//		color[2] = 255;
-//	}
 	else if ( GetTeamNumber() == TF_TEAM_BLUE )
 	{
 		color[0] = 76;
@@ -7766,11 +7719,6 @@ bool C_TFPlayer::ShouldCollide( int collisionGroup, int contentsMask ) const
 			if ( !( contentsMask & CONTENTS_BLUETEAM ) )
 				return false;
 			break;
-
-//		case TF_TEAM_SB:
-//			if (!(contentsMask & CONTENTS_SBTEAM))
-//				return false;
-//			break;
 		}
 	}
 	return BaseClass::ShouldCollide( collisionGroup, contentsMask );
@@ -7869,9 +7817,6 @@ int C_TFPlayer::GetSkin()
 		nSkin = 1;
 		break;
 
-//	case TF_TEAM_SB:
-//		nSkin = 1;
-//		break;
 	default:
 		nSkin = 0;
 		break;
@@ -8306,11 +8251,6 @@ void C_TFPlayer::CreateTauntWithMeEffect()
 			pszImageName = "../Effects/speech_taunt_red";
 			pszParticleName = "speech_taunt_red";
 		}
-//		else if (GetTeamNumber() == TF_TEAM_SB)  [We may use this, but idk yet]
-//		{
-//			pszImageName = "../Effects/speech_taunt_sandbox";
-//			pszParticleName = "speech_taunt_sandbox";
-//		}
 		else
 		{
 			pszImageName = "../Effects/speech_taunt_blue";
@@ -11503,19 +11443,12 @@ void C_TFPlayer::GetGlowEffectColor( float *r, float *g, float *b )
 #ifdef TF_CREEP_MODE
 	if ( TFGameRules() && TFGameRules()->IsCreepWaveMode() )
 	{
-//		if (GetTeamNumber() == TF_TEAM_SB)
-//		{
-//			*r = 255;
-//			*g = 255;
-//			*b = 255;
-//		}
 		if ( GetTeamNumber() == TF_TEAM_RED )
 		{
 			*r = 255;
 			*g = 0;
 			*b = 0;
 		}
-
 		else
 		{
 			*r = 0;

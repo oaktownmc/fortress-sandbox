@@ -294,7 +294,6 @@ inline bool IsIndexIntoPlayerArrayValid( int iIndex )
 #define TEAM_UNASSIGNED			0	// not assigned to a team
 #define TEAM_SPECTATOR			1	// spectator team
 // Start your team numbers after this
-//#define TEAM_SANDBOX			4
 #define LAST_SHARED_TEAM		TEAM_SPECTATOR
 
 // The first team that's game specific (i.e. not unassigned / spectator)
