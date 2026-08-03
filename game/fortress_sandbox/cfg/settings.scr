@@ -32,7 +32,7 @@
 
 
 // Half-Life Server Configuration Layout Script (stores last settings chosen, too)
-// File generated:  Fri Jul 31 08:43:26 PM
+// File generated:  Mon Aug  3 02:00:26 PM
 //
 //
 // Cvar	-	Setting
@@ -51,14 +51,8 @@ DESCRIPTION SERVER_OPTIONS
 	"maxplayers"
 	{
 		"#Valve_Max_Players"
-		{ NUMBER 1 100 }
+		{ NUMBER 1 24 }
 		{ "32" }
-	}
-	"tf_bot_quota"
-	{
-		"Bot Count"
-		{ NUMBER 0 100 }
-		{ "0" }
 	}
 
 	"sv_password"
@@ -88,89 +82,120 @@ DESCRIPTION SERVER_OPTIONS
 		{ NUMBER 0 -1 }
 		{ "0" }
 	}
-	
+
+	"tf_bot_quota"
+	{
+		"Bot Count"
+		{ NUMBER 0 100 }
+		{ "0" }
+	}
+
 	"sv_cheats"
 	{
 		"Enable Cheats"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"fsb_allow_voice_spam"
 	{
-	"Allow Voice Spam"
+		"Allow Voice Spam"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"fsb_autohop"
 	{
 		"Allow Auto Jump"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"fsb_duckjump"
 	{
 		"Allow Jumping while crouched"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"fsb_free_noclip"
 	{
 		"Allow Noclip Regardless of sv_cheats"
 		{ BOOL }
 		{ "0" }
 	}
-	
+
 	"fsb_prevent_bunny_jumping"
 	{
 		"Prevent Bunnyhopping"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"mp_friendlyfire"
 	{
 		"Allow Friendlyfire"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"sv_alltalk"
 	{
 		"Allow Alltalk"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"sv_allowdownload"
 	{
 		"Allow Downloads"
 		{ BOOL }
-		{ "0" }
+		{ "1" }
 	}
+
 	"sv_allowupload"
 	{
 		"Allow Uploads"
 		{ BOOL }
-		{ "0" }
+		{ "1" }
 	}
+
 	"mp_autoteambalance"
 	{
 		"Auto Team Balance"
 		{ BOOL }
 		{ "0" }
 	}
+
 	"tf_weapon_criticals"
 	{
 		"Random Crits"
 		{ BOOL }
-		{"0"}
+		{ "0" }
 	}
+
 	"tf_damage_disablespread"
 	{
 		"Disable Damage Spread"
 		{ BOOL }
-		{"0"}
+		{ "0" }
 	}
+
 	"fsb_instant_respawn"
 	{
 		"Instant Respawning"
+		{ BOOL }
+		{ "0" }
+	}
+	"mp_allowspectators"
+	{
+		"Allow Spectators"
+		{ BOOL }
+		{ "0" }
+	}
+	"tf_weapon_criticals_distance_falloff"
+	{
+		"Crit Falloff"
 		{ BOOL }
 		{ "0" }
 	}
@@ -180,58 +205,110 @@ DESCRIPTION SERVER_OPTIONS
 		{ STRING }
 		{ "" }
 	}
+
 	"sv_pure"
 	{
 		"Pure Server"
-        {
-            LIST        
-            "Do Not Restrict" 		"-1"
-			"Restrict Minimally"			"0"
-			"Restrict All+ Whitelist" 	"1"
-			"Restrict All"			"2"
-        }
-        { "0" }
+		{
+			LIST
+			"Do Not Restrict" "-1"
+			"Restrict Minimally" "0"
+			"Restrict All+ Whitelist" "1"
+			"Restrict All" "2"
+		}
+		{ "0" }
 	}
+
 	"sv_allow_point_servercommand"
 	{
 		"Allow point_servercommand"
-        {
-            LIST        
-            "Do Not Allow" 		"disallow"
-			"Official Maps Only"			"official"
-			"Allow" 	"always"
-        }
-        { "disallow" }
+		{
+			LIST
+			"Do Not Allow" "disallow"
+			"Official Maps Only" "official"
+			"Allow" "always"
+		}
+		{ "0" }
 	}
+
 	"tf_max_voice_speak_delay"
 	{
 		"Voice Command Delay"
-		{NUMBER 0 -1}
-		{"0"}
+		{ NUMBER 0 -1 }
+		{ "0" }
 	}
+
 	"sv_maxvelocity"
 	{
 		"Maximum Entity Velocity"
-		{NUMBER 0 -1}
-		{"3500"}
+		{ NUMBER 0 -1 }
+		{ "3500" }
 	}
+
 	"mp_teams_unbalance_limit"
 	{
 		"Teams Unbalance Limit"
-		{NUMBER 0 -1}
-		{"1"}
+		{ NUMBER 0 -1 }
+		{ "1" }
 	}
+
 	"tf_damage_multiplier_red"
 	{
 		"Incoming RED Damage Multiplier"
-		{NUMBER 0 -1}
-		{"1"}
+		{ NUMBER 0 -1 }
+		{ "1" }
 	}
+
 	"tf_damage_multiplier_blue"
 	{
 		"Incoming BLU Damage Multiplier"
-		{NUMBER 0 -1}
-		{"1"}
+		{ NUMBER 0 -1 }
+		{ "1" }
+		
+	}	
+	"mp_idlemaxtime"
+	{
+		"Maximum Idle Time"
+		{ NUMBER 0 -1 }
+		{ "3" }
 	}
+		"sv_maxcmdrate"
+	{
+		"Maximum CMD Rate"
+		{ NUMBER 0 -1 }
+		{ "66" }
+	}
+			"tf_weapon_criticals_bucket_bottom"
+	{
+		"Crit bucket Bottom"
+		{ NUMBER -1 -1 }
+		{ "-250" }
+	}
+			"tf_weapon_criticals_bucket_cap"
+	{
+		"Crit bucket cap"
+		{ NUMBER -1 -1 }
+		{ "1000" }
+	}
+			"tf_weapon_criticals_bucket_default"
+	{
+		"Crit bucket default"
+		{ NUMBER -1 -1 }
+		{ "300" }
+	}
+
+	"mp_idledealmethod"
+	{
+		"Idle Deal Method"
+		{
+			LIST
+			"No Method" "0"
+			"Spectate then kick" "1"
+			"Kick" "2"
+		}
+		{ "1" }
+	}
+
+
 
 }
