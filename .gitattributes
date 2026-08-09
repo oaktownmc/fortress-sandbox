@@ -44,4 +44,4 @@ protoc binary
 ccache binary
 
 # i hate this file
-*_english.txt binary working-tree-encoding=UTF-16LE-BOM eol=crlf
+*_english.txt binary working-tree-encoding=UTF-16LE eol=crlf
