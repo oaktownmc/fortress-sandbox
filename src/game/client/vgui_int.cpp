@@ -278,6 +278,19 @@ void VGui_PreRender()
 
 void VGui_PostRender()
 {
+    //rendering! i found this func completely unused so i decided to make some use out of this.
+    //things here render specifically in game, underneath the main menu.
+    //maybe this could be useful but idk - headless
+
+    surface()->DrawSetTextColor({ 255,255,255,255 });
+    vgui::HScheme scheme = vgui::scheme()->GetScheme("ClientScheme");
+    vgui::HFont hFont = vgui::scheme()->GetIScheme(scheme)->GetFont("DefaultVerySmall", true);
+    surface()->DrawSetTextFont(hFont);
+    surface()->DrawSetTextPos(5, ScreenHeight() - 20);
+
+    const wchar_t* text = L"This is an early build. Things are subject to change.";
+
+    surface()->DrawPrintText(text, V_wcslen(text));
 }
 
 //-----------------------------------------------------------------------------
